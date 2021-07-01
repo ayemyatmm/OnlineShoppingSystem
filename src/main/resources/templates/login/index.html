@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+        body {
+          background-image: url('/image/shop.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+        }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
+            <div class="text-center card-body">
+        <div class="alert alert-danger text-center" th:if="${param.error}">
+            ユーザー名／パスワードが正しくありません。
+        </div>
+        
+        <form method="post" th:action="@{/login}">
+            <div>
+                <label for="usr">ユーザー名：</label><br>
+                <input id="usr" name="usr" type="text">
+            </div>
+            <div text-center>
+                <label for="passwd">パスワード：</label><br>
+                <input id="passwd" name="passwd" type="password">
+            </div><br>
+            <input type="submit" value="ログイン">
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+</html>

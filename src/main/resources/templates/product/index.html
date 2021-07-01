@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <style>
+        body {
+          background-image: url('/image/shop.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+        }
+        img {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+<title>Online Shopping</title>
+</head>
+<body>
+<div class="container">
+    <div class = "row">
+        <h2>Online Shopp Product List</h2>
+    </div>
+    <br>
+   <div th:insert="fragments/header :: header"></div>
+    <table class="table table-striped table-bordered">
+    <thead class="table-yellow">
+    <tr>
+        <th>Product Photo</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="product : ${product}" th:object="${product}">
+            <td><img th:src = "@{/{i}(i=*{image})}"></td>
+            <td><a th:href="@{/product/{id}(id=*{id})}" th:text=${product.name}></a></td>
+            <td>[[${product.price}]]-Yen</td>
+        </tr>
+    </tbody>
+    </table>
+ 
+    </div>
+</html>

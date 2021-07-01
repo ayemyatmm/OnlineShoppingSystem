@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+          background-image: url('/image/shop.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+        }
+    </style>
+<head>
+</head>
+<body>
+
+<div class="container">
+<h2>Product Detail Description</h2>
+<div th:insert="fragments/header :: header"></div>
+    <form th:method="post" th:action="@{/product/{id}/cart(id=*{id})}" 
+     th:object="${product}">
+        <div>
+            Product Name: [[${product.name}]]
+        </div>
+        <div>
+            Price: [[${product.price}]]
+        </div>  
+           
+        <div>  
+           Quantity :<input type='number' name='quantity' />
+        </div> 
+        <div>
+            Size:
+        </div>  
+        
+        <div class="form-check form-check-inline">
+            <ul th:each="productsize :${product.productSize}">
+                <input type="radio" name="productsize" th:value="${productsize.id}" th:text="${productsize.size_text}">
+            </ul>
+        </div>
+        
+        <div>
+            Description: [[${product.description}]] 
+        </div>  
+        
+        <input type="submit" class="btn btn-primary" value="Add to Cart">
+        
+    </form>    
+    <div><a class="fas fa-trash icon-dark" th:href="@{/product/index}"></a></div>
+    <a th:href="@{/product/index}" class="btn btn-dark">Back</a>
+</div>
+
+</body>
+</html>

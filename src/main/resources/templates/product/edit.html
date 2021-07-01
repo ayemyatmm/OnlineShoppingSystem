@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+          background-image: url('/image/shop.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;  
+          background-size: cover;
+        }
+    </style>
+<head>
+</head>
+<body>
+
+<div class="container">
+<h2>Cart Edit</h2>
+<div th:insert="fragments/header :: header"></div>
+    <form th:method="post" th:action="@{/product/cart/{id}/update/(id=${cart.id})}" th:object="${cart}">
+        <div>
+            Product Name: [[${cart.product.name}]]
+        </div>
+        <div>
+            Size:
+        </div>  
+         <div class="form-check form-check-inline">
+            <ul th:each="cart :${cart}">
+                <input type="radio" name="productsize" th:value="${cart.size_value}" th:text="${cart.product.productsize.size_text}">
+            </ul>
+        </div> 
+        <div>
+        Price: [[${cart.product.price}]]
+        </div>
+        <div>  
+           Quantity : <input type='number' name='quantity' />
+        </div>   
+        <br>
+        <input type="submit" class="btn btn-primary" value="Update Cart Item">
+        <a th:href="@{/product/cart}" class="btn btn-primary">Back</a>
+    </form>    
+</div>
+
+</body>
+</html>
