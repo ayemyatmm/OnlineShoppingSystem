@@ -4,33 +4,41 @@
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style>
         body {
-          background-image: url('/image/shop.jpg');
+          background-image: url('');
           background-repeat: no-repeat;
           background-attachment: fixed;  
           background-size: cover;
         }
 </style>
-<div class="container">
+<div class="container-fluid">
+    <div class="text-center card-header">
+        <img src="https://image.dhgate.com/0x0/f2/albu/g10/M01/FA/70/rBVaWVyZ9niAEy8tAAZ9JTiZrjU925.jpg" width="600" height="370" >
+    </div>
     <div class="row">
+        
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
             <div class="text-center card-body">
-        <div class="alert alert-danger text-center" th:if="${param.error}">
-            ユーザー名／パスワードが正しくありません。
-        </div>
+                <div class="alert alert-danger text-center" th:if="${param.error}">
+                    <p style="color:red;"> Username／Password is not correct。</p>
+                </div>
         
-        <form method="post" th:action="@{/login}">
-            <div>
-                <label for="usr">ユーザー名：</label><br>
-                <input id="usr" name="usr" type="text">
+                <form method="post" th:action="@{/login}">
+                    <div>
+                        <label for="usr">Username:</label><br>
+                        <input id="usr" name="usr" type="text">
+                      
+                    </div>
+                    <div >
+                        <label for="passwd">Password:</label><br>
+                        <input id="passwd" name="passwd" type="password">
+                    
+                    </div><br>
+                    <input type="submit" value="Login">
+                </form>
+                <br>
+                <a th:href="@{/register}"  class="btn btn-dark">New User Register</a>
             </div>
-            <div text-center>
-                <label for="passwd">パスワード：</label><br>
-                <input id="passwd" name="passwd" type="password">
-            </div><br>
-            <input type="submit" value="ログイン">
-        </form>
+        </div>
     </div>
-    </div>
-</div>
 </div>
 </html>

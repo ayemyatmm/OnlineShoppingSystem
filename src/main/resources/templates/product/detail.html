@@ -10,6 +10,12 @@
           background-attachment: fixed;  
           background-size: cover;
         }
+          img {
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            padding: 5px;
+            width: 250px;
+        }
     </style>
 <head>
 </head>
@@ -17,39 +23,48 @@
 
 <div class="container">
 <h2>Product Detail Description</h2>
-<div th:insert="fragments/header :: header"></div>
-    <form th:method="post" th:action="@{/product/{id}/cart(id=*{id})}" 
-     th:object="${product}">
-        <div>
-            Product Name: [[${product.name}]]
-        </div>
-        <div>
-            Price: [[${product.price}]]
-        </div>  
-           
-        <div>  
-           Quantity :<input type='number' name='quantity' />
-        </div> 
-        <div>
-            Size:
-        </div>  
-        
-        <div class="form-check form-check-inline">
-            <ul th:each="productsize :${product.productSize}">
-                <input type="radio" name="productsize" th:value="${productsize.id}" th:text="${productsize.size_text}">
-            </ul>
-        </div>
-        
-        <div>
-            Description: [[${product.description}]] 
-        </div>  
-        
-        <input type="submit" class="btn btn-primary" value="Add to Cart">
-        
-    </form>    
-    <div><a class="fas fa-trash icon-dark" th:href="@{/product/index}"></a></div>
-    <a th:href="@{/product/index}" class="btn btn-dark">Back</a>
-</div>
+    <div th:insert="fragments/header :: header"></div>
+    <div th:if="${error}" class="alert alert-danger">[[${error}]]<br></div>
+        <form th:method="post" th:action="@{/product/{id}/cart(id=*{id})}" 
+        th:object="${product}">
+        <img th:src = "@{(*{image})}">
+            <div >
+                Product Name: [[${product.name}]]
+            </div>
+            <div >
+                Price: [[${product.price}]] Yen
+            </div>  
+            <div>  
+            Quantity :<input type='number' name='quantity' />
+             
+            </div> 
 
+            <div>  
+            Having Stock : <p style="color:red;"> [[${product.having_amount}]] items in shop!!</p>
+            </div>
+            <div>
+                Size:
+            </div> 
+            <div class="form-check form-check-inline">
+                <ul th:each="productsize :${product.productSize}">
+                    <input type="radio" name="productsize" th:value="${productsize.size_text}"
+                    th:text="${productsize.size_text}">
+                </ul>
+            </div>
+            <div >
+                Description: [[${product.description}]] 
+            </div>  
+            <br>
+            <div th:if= "${product.having_amount} == 0 ">
+            <p style="color:red;"> Now, This product is sold out!!</p>
+            <input type="submit" class="btn btn-light" value="Add to Cart" disabled>
+            </div>
+            <div th:unless= "${product.having_amount} == 0 ">
+            <input type="submit" class="btn btn-primary" value="Add to Cart" >
+            </div>
+            <a class="btn btn-dark" th:href="@{/product/index}">Back</a>
+        </form>    
+    </div>
+</div>
 </body>
 </html>

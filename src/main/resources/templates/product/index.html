@@ -36,7 +36,7 @@
     </thead>
     <tbody>
         <tr th:each="product : ${product}" th:object="${product}">
-            <td><img th:src = "@{/{i}(i=*{image})}"></td>
+            <td><img th:src = "@{(*{image})}"></td>
             <td><a th:href="@{/product/{id}(id=*{id})}" th:text=${product.name}></a></td>
             <td>[[${product.price}]]-Yen</td>
         </tr>

@@ -22,12 +22,12 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+    @NotBlank(message = "Please fill to require Username.")
     @Size(max=30)
     @Column(name = "username", nullable = true)
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "Please fill to require Password.")
     @Size(max=255)
     @Column(name = "password", nullable = true)
     private String password;

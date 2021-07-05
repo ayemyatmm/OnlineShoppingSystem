@@ -21,7 +21,7 @@ public class Product{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    private Integer id ;
 
     @Column(name="image")
     private String image;

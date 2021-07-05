@@ -15,10 +15,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReceiptRepository extends JpaRepository<Receipt , Integer>{
     Receipt findByAppUserId(Integer app_user_id);
+
     @Query(value = "select sum(ct.total_price) from cart as ct where app_user_id = :app_user_id ", nativeQuery = true)
     Integer selectSumPrice(@Param("app_user_id") Integer app_user_id);
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM Receipt  where receipt.app_user_id =:appUser ", nativeQuery = true)
-    void deleteContributeur(@Param("appUser") Integer appUser);
+
+    @Query(value = "select sum(re.total_price) from receipt as re where app_user_id = :app_user_id ", nativeQuery = true)
+    Integer selectPrice(@Param("app_user_id") Integer app_user_id);
+
+    // @Modifying
+    // @Transactional
+    // @Query(value = "DELETE FROM Receipt  where receipt.app_user_id =:appUser ", nativeQuery = true)
+    // void deleteContributeur(@Param("appUser") Integer appUser);
+
+    
+    @Query(value = "select * from receipt where app_user_id = :app_user_id and status = 0",nativeQuery = true)
+    Receipt selectStatus(@Param("app_user_id") Integer app_user_id);
+
+    
 }

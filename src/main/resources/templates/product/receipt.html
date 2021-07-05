@@ -21,17 +21,23 @@
     <div class = "row">
         <h2>Receipt Form</h2>
     </div>
+     
     <div th:insert="fragments/header :: header"></div>
-   <div class="my_product">Buy all Product: </div> 
-     <div th:each="cart :${carts}" th:object="${cart}">
-           [[${cart.product.name}]]
+    <div class="text-center card-header">
+        <img src="https://image.dhgate.com/0x0/f2/albu/g10/M01/FA/70/rBVaWVyZ9niAEy8tAAZ9JTiZrjU925.jpg" width="250" height="250" >
     </div>
-    <br>
-    <div > Customer Name: [[${receipts.appUser.username}]]</div>
-    <div > Total Prices: [[${receipts.total_price}]] </div>
-    
+   <div class="text-center my_product">Your Bought Product List... </div>
+     <div class="text-center card-body"th:each="cart :${carts}" th:object="${cart}">
+           [[${cart.product.name}]]  items is 
+           [[${cart.product.price}]] Yen
+    </div>
+    <div class="text-center card-body" th:each="receipt :${receipts}" >
+    Hey [[${receipt.appUser.username}]] 
+    Your productt total Price is [[${receipt.total_price}]] Yen !!!! <br>
+    Thank you so much and We are warmly welcome to your next time shopping..
+    </div>
     <div class="text-center card-body">
-       <form th:action="@{/product/done}" th:method="delete">
+       <form th:action="@{/product/finishshopping}" th:method="delete">
                 <button  class="btn btn-danger" type="submit" >Finish Shopping</button>
         </form>
     </div>

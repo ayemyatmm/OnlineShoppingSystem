@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Cart{
     @Column(name="quantity")
     private Integer quantity;
 
+    @NotBlank(message = "Please choose to require Product Size.")
     @Column(name="size_value")
     private String size_value;
 

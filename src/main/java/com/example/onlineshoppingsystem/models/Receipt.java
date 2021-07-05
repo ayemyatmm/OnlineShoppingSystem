@@ -23,6 +23,9 @@ public class Receipt {
     @Column(name = "total_price")
     private Integer total_price;
 
+    @Column(name = "status")    
+    private Integer status;
+
     @ManyToOne
     private AppUser appUser;
 
