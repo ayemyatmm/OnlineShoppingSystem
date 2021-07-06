@@ -92,6 +92,9 @@ public class ProductController {
         model.addAttribute("appuser", user); 
         //Productデーブルからデータを取得する
         model.addAttribute("product", pRep.findById(id).get());
+        if(result.hasErrors()){
+            return "product/detail";
+        }
         return "product/detail";
     }
 
@@ -178,7 +181,7 @@ public class ProductController {
 
     //Cartに入れたProductを削除する
     @DeleteMapping("/cart/{id}/remove")
-    public String deleteCartlist(@PathVariable Integer id,@ModelAttribute Cart cart,Model model) {
+    public String deleteCartlist(@PathVariable Integer id) {
         Cart c = cartRep.findById(id).get();
         System.out.println("mainfdfd"+  c.getId());
 

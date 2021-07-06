@@ -24,11 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
        
         http.authorizeRequests()
             .antMatchers("/login", "/register").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated().and()
             .formLogin()
             .loginPage("/login").usernameParameter("usr").passwordParameter("passwd").defaultSuccessUrl("/product/index", true).and()
             .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/admin/index")
             .invalidateHttpSession(true);
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
           
     }
 

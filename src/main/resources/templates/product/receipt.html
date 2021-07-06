@@ -24,16 +24,17 @@
      
     <div th:insert="fragments/header :: header"></div>
     <div class="text-center card-header">
-        <img src="https://image.dhgate.com/0x0/f2/albu/g10/M01/FA/70/rBVaWVyZ9niAEy8tAAZ9JTiZrjU925.jpg" width="250" height="250" >
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a7a7b120588211.56042b16edecd.gif" width="400" height="300" >
     </div>
    <div class="text-center my_product">Your Bought Product List... </div>
      <div class="text-center card-body"th:each="cart :${carts}" th:object="${cart}">
-           [[${cart.product.name}]]  items is 
-           [[${cart.product.price}]] Yen
+           [[${cart.product.name}]]  items
+           
     </div>
     <div class="text-center card-body" th:each="receipt :${receipts}" >
     Hey [[${receipt.appUser.username}]] 
     Your productt total Price is [[${receipt.total_price}]] Yen !!!! <br>
+    <br>
     Thank you so much and We are warmly welcome to your next time shopping..
     </div>
     <div class="text-center card-body">
